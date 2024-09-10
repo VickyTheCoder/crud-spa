@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts - SPA</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contacts - SPA</title>
+    </head>
+    <body>
+        <div id="homePage">
+            <ol>
+                <li><a href="#">Add Contact</a></li>
+                <li><a href="#">Edit Contact</a></li>
+                <li><a href="#">Read Contact</a></li>
+                <li><a href="#">Delete Contact</a></li>
+            </ol>
+        </div>
+        <div id="addPage">
+            <strong>Add Page - Under Construction</strong>
+            <table>
+                {{ add_form.as_table }}
+            </table>
+            <input type="button" value="Add Contact">
+        </div>
+        <div id="editPage">
+            <strong>Edit Page - Under Construction</strong>
+            <table>
+                {{ edit_form.as_table }}
+            </table>
+            <input type="button" value="Edit Contact">
+        </div>
+        <div id="readPage">
+            <input type="text" name="aadhar">
+            <input type="button" value="Search Contact">
+        </div>
+        <div id="deletePage">
+            <input type="text" name="aadhar">
+            <input type="button" value="Delete Contact">
+        </div>
+    </body>
 </html>
