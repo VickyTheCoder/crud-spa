@@ -47,6 +47,28 @@
             }
             function add(){
                 // AJAX Call to django views
+                adr = $('#addPage input[name="aadhar"]').val();
+                nam = $('#addPage input[name="name"]').val();
+                dob = $('#addPage input[name="dob"]').val();
+                eml = $('#addPage input[name="email"]').val();
+                mbl = $('#addPage input[name="mobile"]').val();
+                pic = $('#addPage input[name="dp_pic"]').val();
+
+                var d = {
+                    'aadhar': adr, 'name': nam, 'dob': dob,
+                    'email': eml, 'mobile': mbl, 'dp_pic': pic,
+                }
+
+                $.ajax(
+                    {
+                        url: 'contact/insert',
+                        type: 'POST',
+                        data: d,
+                        success: function(response){
+                            console.log(response['status'])
+                        }
+                    }
+                );
             }
         </script>
     </body>

@@ -27,5 +27,5 @@ def add_person(request):
             status = "Inserted"        
     else:
         status = "Already Existing data"
-    return JsonResponse({'status': statusq})
+    return JsonResponse({'status': status})
 
