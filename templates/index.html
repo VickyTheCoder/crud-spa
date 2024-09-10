@@ -23,7 +23,7 @@
             <table>
                 {{ add_form.as_table }}
             </table>
-            <input type="button" value="Add Contact">
+            <input type="button" onclick="add()" value="Add Contact">
         </div>
         <div id="editPage" hidden>
             <strong>Edit Page - Under Construction</strong>
@@ -44,6 +44,9 @@
             function show_addPage(){
                 $('#homePage').fadeOut();
                 $('#addPage').show();
+            }
+            function add(){
+                // AJAX Call to django views
             }
         </script>
     </body>
