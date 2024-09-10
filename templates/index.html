@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="csrf" content={{csrf_token}}>
         <title>Contacts - SPA</title>
         <script 
             src="https://code.jquery.com/jquery-3.7.1.min.js" 
@@ -59,11 +60,13 @@
                     'email': eml, 'mobile': mbl, 'dp_pic': pic,
                 }
 
+                var h = {'X-CSRFToken': $('meta[name="csrf"]').attr('content')}
                 $.ajax(
                     {
                         url: 'contact/insert',
                         type: 'POST',
                         data: d,
+                        headers: h,
                         success: function(response){
                             console.log(response['status'])
                         }
