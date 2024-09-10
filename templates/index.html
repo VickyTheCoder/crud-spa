@@ -41,6 +41,9 @@
             <input type="text" name="aadhar">
             <input type="button" value="Delete Contact">
         </div>
+        <div id="result">
+            <font id="status"></font>
+        </div>
         <script>
             function show_addPage(){
                 $('#homePage').fadeOut();
@@ -68,7 +71,8 @@
                         data: d,
                         headers: h,
                         success: function(response){
-                            console.log(response['status'])
+                            // console.log(response['status'])
+                            $('#status').text(response['status'])
                         }
                     }
                 );
