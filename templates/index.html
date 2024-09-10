@@ -14,25 +14,25 @@
                 <li><a href="#">Delete Contact</a></li>
             </ol>
         </div>
-        <div id="addPage">
+        <div id="addPage" hidden>
             <strong>Add Page - Under Construction</strong>
             <table>
                 {{ add_form.as_table }}
             </table>
             <input type="button" value="Add Contact">
         </div>
-        <div id="editPage">
+        <div id="editPage" hidden>
             <strong>Edit Page - Under Construction</strong>
             <table>
                 {{ edit_form.as_table }}
             </table>
             <input type="button" value="Edit Contact">
         </div>
-        <div id="readPage">
+        <div id="readPage" hidden>
             <input type="text" name="aadhar">
             <input type="button" value="Search Contact">
         </div>
-        <div id="deletePage">
+        <div id="deletePage" hidden>
             <input type="text" name="aadhar">
             <input type="button" value="Delete Contact">
         </div>
