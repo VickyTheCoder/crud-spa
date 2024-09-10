@@ -4,11 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Contacts - SPA</title>
+        <script 
+            src="https://code.jquery.com/jquery-3.7.1.min.js" 
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+            crossorigin="anonymous">
+        </script>
     </head>
     <body>
         <div id="homePage">
             <ol>
-                <li><a href="#">Add Contact</a></li>
+                <li><a href="#" onclick="show_addPage()">Add Contact</a></li>
                 <li><a href="#">Edit Contact</a></li>
                 <li><a href="#">Read Contact</a></li>
                 <li><a href="#">Delete Contact</a></li>
@@ -36,5 +41,11 @@
             <input type="text" name="aadhar">
             <input type="button" value="Delete Contact">
         </div>
+        <script>
+            function show_addPage(){
+                $('#homePage').fadeOut();
+                $('#addPage').show();
+            }
+        </script>
     </body>
 </html>
