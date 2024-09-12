@@ -16,8 +16,8 @@
             <ol>
                 <li><a href="#" onclick="show_addPage()">Add Contact</a></li>
                 <li><a href="#" onclick="show_editPage()">Edit Contact</a></li>
-                <li><a href="#">Read Contact</a></li>
-                <li><a href="#">Delete Contact</a></li>
+                <li><a href="#" onclick="show_readPage()">Read Contact</a></li>
+                <li><a href="#" onclick="show_deletePage()">Delete Contact</a></li>
             </ol>
         </div>
         <div id="addPage" hidden>
@@ -107,6 +107,14 @@
                         }
                     }
                 );
+            }
+            function show_readPage(){
+                $('#homePage').fadeOut();
+                $('#readPage').show();
+            }
+            function show_deletePage(){
+                $('#homePage').fadeOut();
+                $('#deletePage').show();
             }
         </script>
     </body>
