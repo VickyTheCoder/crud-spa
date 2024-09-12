@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from Contact.models import Person
+import json
 
 # Create your views here.
 def add_person(request):
@@ -28,4 +29,39 @@ def add_person(request):
     else:
         status = "Already Existing data"
     return JsonResponse({'status': status})
+
+def edit_person(request):
+    #restricting in-appropriate methods, pet project so fine.
+    #in prod, people can find loopholes to attack the site
+    if request.method != 'PATCH':
+        return JsonResponse({'status': f'Wrong http used - ({request.method})'})
+    edited = []
+    data = json.loads(request.body)#reading PATCH data
+    adr = data.get('aadhar')
+    if adr is None:
+        return JsonResponse({"status": "Aadhar is missing, mandatory to edit"})
+    nam = data.get('name')
+    d = data.get('dob')
+    em = data.get('email')
+    mb = data.get('mobile')
+    dp = data.get('dp_pic')
+    editable = nam or d or em or mb or dp
+    if not editable:
+        return JsonResponse({"status":"Update at least one field"})
+    try:
+        cur = Person.objects.get(aadhar=adr)
+    except:
+        return JsonResponse({"status": f"Invalid Aadhar({adr}) given"})
+    else:
+        cols = (
+            ('name', nam), ('dob', d), ('email', em),
+            ('mobile', mb), ('dp_pic', dp),
+        )
+        for col_name, col_val in cols:
+            if col_val:
+                edited.append(col_name)
+                exec(f"cur.{col_name} = '{col_val}'")
+        cur.save()
+    edited = ", ".join(edited)
+    return JsonResponse({"status": f"Edited {edited} for {adr}"})
 

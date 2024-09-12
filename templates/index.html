@@ -15,7 +15,7 @@
         <div id="homePage">
             <ol>
                 <li><a href="#" onclick="show_addPage()">Add Contact</a></li>
-                <li><a href="#">Edit Contact</a></li>
+                <li><a href="#" onclick="show_editPage()">Edit Contact</a></li>
                 <li><a href="#">Read Contact</a></li>
                 <li><a href="#">Delete Contact</a></li>
             </ol>
@@ -27,11 +27,10 @@
             <input type="button" onclick="add()" value="Add Contact">
         </div>
         <div id="editPage" hidden>
-            <strong>Edit Page - Under Construction</strong>
             <table>
                 {{ edit_form.as_table }}
             </table>
-            <input type="button" value="Edit Contact">
+            <input type="button" onclick="edit()" value="Edit Contact">
         </div>
         <div id="readPage" hidden>
             <input type="text" name="aadhar">
@@ -69,6 +68,38 @@
                         url: 'contact/insert',
                         type: 'POST',
                         data: d,
+                        headers: h,
+                        success: function(response){
+                            // console.log(response['status'])
+                            $('#status').text(response['status'])
+                        }
+                    }
+                );
+            }
+            function show_editPage(){
+                $('#homePage').fadeOut();
+                $('#editPage').show();
+            }
+            function edit(){
+                // AJAX Call to django views
+                adr = $('#editPage input[name="aadhar"]').val();
+                nam = $('#editPage input[name="name"]').val();
+                dob = $('#editPage input[name="dob"]').val();
+                eml = $('#editPage input[name="email"]').val();
+                mbl = $('#editPage input[name="mobile"]').val();
+                pic = $('#editPage input[name="dp_pic"]').val();
+
+                var d = {
+                    'aadhar': adr, 'name': nam, 'dob': dob,
+                    'email': eml, 'mobile': mbl, 'dp_pic': pic,
+                }
+
+                var h = {'X-CSRFToken': $('meta[name="csrf"]').attr('content')}
+                $.ajax(
+                    {
+                        url: 'contact/edit',
+                        type: 'PATCH',
+                        data: JSON.stringify(d),
                         headers: h,
                         success: function(response){
                             // console.log(response['status'])

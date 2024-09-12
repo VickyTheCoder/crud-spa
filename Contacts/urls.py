@@ -20,4 +20,5 @@ from Contact import views as ct
 urlpatterns = [
     path('', ui.home_page),
     path('contact/insert', ct.add_person),
+    path('contact/edit', ct.edit_person),
 ]

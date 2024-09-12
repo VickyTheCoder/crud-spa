@@ -6,5 +6,6 @@ def home_page(request):
     if request.method == 'GET':
         return render(request=request, 
                       template_name='index.html',
-                      context={'add_form': PersonForm})
+                      context={'add_form': PersonForm,
+                               'edit_form': PersonForm})
     return HttpResponse("Wrong Request")
