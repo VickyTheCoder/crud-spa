@@ -38,7 +38,7 @@
         </div>
         <div id="deletePage" hidden>
             <input type="text" name="aadhar">
-            <input type="button" value="Delete Contact">
+            <input type="button" onclick="dele()" value="Delete Contact">
         </div>
         <div id="result">
             <font id="status"></font>
@@ -133,6 +133,24 @@
             function show_deletePage(){
                 $('#homePage').fadeOut();
                 $('#deletePage').show();
+            }
+            function dele(){
+                // AJAX Call to django views
+                adr = $('#deletePage input[name="aadhar"]').val();
+                var d = {'aadhar': adr}
+                var h = {'X-CSRFToken': $('meta[name="csrf"]').attr('content')}
+                $.ajax(
+                    {
+                        url: 'contact/delete',
+                        type: 'DELETE',
+                        data: JSON.stringify(d),
+                        headers: h,
+                        success: function(response){
+                            // console.log(response['status'])
+                            $('#status').text(response['status'])
+                        }
+                    }
+                );
             }
         </script>
     </body>

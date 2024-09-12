@@ -22,4 +22,5 @@ urlpatterns = [
     path('contact/insert', ct.add_person),
     path('contact/edit', ct.edit_person),
     path('contact/read', ct.read_person),
+    path('contact/delete', ct.delete_person),
 ]

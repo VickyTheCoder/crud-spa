@@ -71,10 +71,25 @@ def read_person(request):
         try:
             cur = Person.objects.get(aadhar=adr)
         except:
-            return JsonResponse({'status': "No Such Contact({adr})"})
+            return JsonResponse({'status': f"No Such Contact({adr})"})
         else:
             res = str(cur.get_details())
             return JsonResponse({'status': res})
+    else:
+        #pet project :)
+        return JsonResponse({'status': f'Wrong http used - ({request.method})'})
+    
+def delete_person(request):
+    if request.method == 'DELETE':
+        data = json.loads(request.body)
+        adr = data.get('aadhar')
+        try:
+            cur = Person.objects.get(aadhar=adr)
+            cur.delete()
+        except:
+            return JsonResponse({'status': f"No Such Contact({adr})"})
+        else:
+            return JsonResponse({'status': f"Contact({adr}) deleted"})
     else:
         #pet project :)
         return JsonResponse({'status': f'Wrong http used - ({request.method})'})
