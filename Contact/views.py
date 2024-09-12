@@ -65,3 +65,16 @@ def edit_person(request):
     edited = ", ".join(edited)
     return JsonResponse({"status": f"Edited {edited} for {adr}"})
 
+def read_person(request):
+    if request.method == 'GET':
+        adr = request.GET.get('aadhar')
+        try:
+            cur = Person.objects.get(aadhar=adr)
+        except:
+            return JsonResponse({'status': "No Such Contact({adr})"})
+        else:
+            res = str(cur.get_details())
+            return JsonResponse({'status': res})
+    else:
+        #pet project :)
+        return JsonResponse({'status': f'Wrong http used - ({request.method})'})

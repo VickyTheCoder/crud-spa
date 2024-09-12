@@ -34,7 +34,7 @@
         </div>
         <div id="readPage" hidden>
             <input type="text" name="aadhar">
-            <input type="button" value="Search Contact">
+            <input type="button" onclick="read()" value="Search Contact">
         </div>
         <div id="deletePage" hidden>
             <input type="text" name="aadhar">
@@ -111,6 +111,24 @@
             function show_readPage(){
                 $('#homePage').fadeOut();
                 $('#readPage').show();
+            }
+            function read(){
+                adr = $('#readPage input[name="aadhar"]').val();
+                var d = {'aadhar': adr}
+                var h = {'X-CSRFToken': $('meta[name="csrf"]').attr('content')}
+                $.ajax(
+                    {
+                        url: 'contact/read',
+                        type: 'GET',
+                        data: d,
+                        headers: h,
+                        success: function(response){
+                            // console.log(response['status'])
+                            console.log(response);
+                            $('#status').text(response['status'])
+                        }
+                    }
+                );
             }
             function show_deletePage(){
                 $('#homePage').fadeOut();

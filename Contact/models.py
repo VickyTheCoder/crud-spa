@@ -10,3 +10,12 @@ class Person(models.Model):
     dp_pic = models.ImageField(upload_to="images/")
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+
+    def get_details(self):
+        return {
+            'aadhar': self.aadhar,
+            'name': self.name,
+            'dob': self.dob,
+            'email': self.email,
+            'mobile': self.mobile
+        }
